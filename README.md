@@ -1,3 +1,3 @@
 # study
 Welcome to my study site
-<h1>Hello</h1>
+<a href="study.html"> Click to Site <a>
