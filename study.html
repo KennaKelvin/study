@@ -1,0 +1,280 @@
+<style>
+    th,td{
+        border: 1px solid black;
+    }
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: white;
+}
+h1{
+    text-align: center;
+}
+
+table{
+    margin: 0 auto;
+}
+th,td{
+    border: 1px solid white;
+    align-items: center;
+    padding: 30px;
+    
+
+}
+.first{
+    width: 50%;
+    padding: 5px;
+    justify-content: center;
+    text-align: center;
+    word-wrap: break-word;
+    border-color: head;
+    display: flexbox;
+    margin: 0 auto;
+}
+
+input{
+    margin-bottom: 5px;
+    padding: 10px;
+}
+</style>
+
+<div class="first">
+    <h2>Pathway of success can never be easy</h2>
+    <p id="name"> Ikenna Iroegbu </p>
+</div>
+<br>
+
+
+
+<div>
+    <table cellspacing="0" class="cell-serial">
+        <tr>
+            <th>Date</th>
+            <th>Topic</th>
+            <th class="truncate">Note</th>
+            <th class="truncate">IMPP</th>
+        </tr>
+    </table> 
+</div>
+
+<form onsubmit="photocopyData(); return false">
+    <h2>Assessment</h2>
+    <input type="date" id="DOB-el" required> <br>
+    <input type="text" placeholder="Topics" id="B4-el" required> <br>
+    <textarea name="" placeholder="Note" id="NW-el"  cols="30" rows="10" required></textarea>
+    <textarea name="" id="DM-el" cols="30" rows="10" placeholder="Important Points" required></textarea> <br>
+
+    <input type="submit" value="Save">
+</form>
+
+
+
+<script>
+
+    const Name = document.getElementById("name")
+    const head = document.querySelector("h2")
+    const paragraph = document.querySelector("p")
+
+    photoarr = new Array ();
+    function photocopyData(){
+        getphotoData()
+        photoarr.push({
+            tdDOB:document.querySelector("#DOB-el").value,
+            B4el:document.querySelector("#B4-el").value,
+            NWel:document.querySelector("#NW-el").value,
+            DMel:document.querySelector("#DM-el").value,
+        })
+        localStorage.setItem("photoData", JSON.stringify(photoarr))
+        showphotoData()
+            
+    }
+
+    function getphotoData(){
+        let str = localStorage.getItem("photoData")
+        if(str != null)
+            photoarr = JSON.parse(str)
+    }
+
+    
+    function showphotoData(){
+        getphotoData()
+        
+        let table = document.getElementsByTagName("table")[0]
+        let x = table.rows.length
+        while(--x){
+            table.deleteRow(x)
+        }
+
+        for(i=0;i<photoarr.length;i++){
+            let newRow = table.insertRow(table.length)
+            tdDOB = newRow.insertCell(0)
+            B4el = newRow.insertCell(1);
+            NWel = newRow.insertCell(2);
+            DMel = newRow.insertCell(3)
+            
+
+        tdDOB.innerHTML = photoarr[i].tdDOB;
+        B4data = B4el.innerHTML = photoarr[i].B4el;
+        newdata = NWel.innerHTML = photoarr[i].NWel
+        DMdata = DMel.innerHTML = photoarr[i].DMel;
+
+    }
+}
+    
+    
+
+showphotoData()
+
+
+function randomColor(){
+    let numbers = '0123456789ABCDEF'
+    let color = '#'
+    for(let i=0; i<6; i++){
+        color = color + numbers[Math.floor(Math.random()*16)]
+    }
+    return color
+}
+function show(){
+    colorInput = randomColor()
+    Name.style.color = colorInput
+}
+setInterval("show()", 500)
+
+quotes =[{
+    quote: `'Get it down. Take chances. It may be bad, but it's the only way you can do anything really good'`,
+    person:`William Faulkner`
+},{
+    quote:`'Ideas are like rabbits. You get a couple and learn how to handle them, and pretty soon you have a dozen'`,
+    person:`John Steinbeck`
+},{
+    quote:`'Sometimes, you read a book and it fills you with this weird evangelical zeal, and you become convinced that the shattered world will never be put back together unless and until all living humans read the book'`,
+    person:`John Green`
+},{
+    quote:`'A writer never has a vacation. For a writer life consists of either writing or thinking about writing.'`,
+    person:`Eugene Ionesco`
+},{
+    quote:`'You don't start out writing good stuff. You start out writing crap and thinking it's good stuff, and then gradually you get better at it. That's why I say one of the most valuable traits is persistence'`,
+    person:`Octavia E. Butler`
+},{
+    quote:`'Do not hoard what seems good for a later place in the book, or for another book; give it, give it all, give it now.'`,
+    person:`Annie Dillard`
+},{
+    quote:`'Don't bend; don't water it down; don't try to make it logical; don't edit your own soul according to the fashion. Rather, follow your most intense obsessions mercilessly'`,
+    person:`Franz Kafka`
+},{
+    quote:`'Keep away from people who try to belittle your ambitions. Small people always do that, but the really great make you feel that you, too, can become great'`,
+    person:`Mark Twain`
+},{
+    quote:`'Trust our heart if the seas catch fire, live by love though the stars walk backwards.'`,
+    person:`E. Cummings`
+},{
+    quote:`'Outside the windows the day was bright: golden sunshine, blue sky, pleasant wind... I wanted to punch the happy day in the face, grab it by the hair, and beat it until it told me what the hell it was so happy about.'`,
+    person:`Ilona Andrews`
+},{
+    quote:`'I haven't had a very good day. I think I might still be hungover and everyone's dead and my root beer's gone'`,
+    person:`Holly Black`
+},{
+    quote:`'It is impossible to live without failing at something, unless you live so cautiously that you might as well not have lived at all - in which case, you fail by default'`,
+    person:`J.K. Rowling`
+},{
+    quote:`'But I am very poorly today & very stupid & I hate everybody & everything. One lives only to make blunders'`,
+    person:`Charles Darwin`
+},{
+    quote:`'We are cups, constantly and quietly being filled. The trick is knowing how to tip ourselves over and let the beautiful stuff out'`,
+    person:`Ray Bradbury`
+},{
+    quote:`'Life is never fair, and perhaps it is a good thing for most of us that it is not'`,
+    person:`Oscar Wilde`
+},{
+    quote:`'You may encounter many defeats, but you must not be defeated. In fact, it may be necessary to encounter the defeats, so you can know who you are, what you can rise from, how you can still come out of it.'`,
+    person:`Maya Angelou`
+},{
+    quote:`'Don't cry because it's over. Smile because it happened'`,
+    person:`Dr. Seuss`
+},{
+    quote:`'Everything is hard before it is easy'`,
+    person:`Johann Wolfgang von Goethe`
+},{
+    quote:`'Anyone who has never made a mistake has never tried anything new.'`,
+    person:``
+},{
+    quote:`'These worst mornings with cold floors and hot windows and merciless light — the soul's certainty that the day will have to be not traversed but sort of climbed, vertically, and then that going to sleep again at the end of it will be like falling, again, off something tall and sheer.'`,
+    person:`David Foster Wallace`
+},{
+    quote:`'Don't let your happiness depend on something you may lose'`,
+    person:`C.S. Lewis`
+},{
+    quote:`'We are all ordinary. We are all boring. We are all spectacular. We are all shy. We are all bold. We are all heroes. We are all helpless. It just depends on the day.'`,
+    person:`Brad Meltzer`
+},{
+    quote:`'It hurt because it mattered'`,
+    person:`John Green`
+},{
+    quote:`'Some of us think holding on makes us strong; but sometimes it is letting go.'`,
+    person:`Herman Hesse`
+},{
+    quote:`'Life's not fair; why should I be?'`,
+    person:`Margaret Atwood`
+},{
+    quote:`'Never look back unless you are planning to go that way.'`,
+    person:`Henry David Thoreau
+    `
+},{
+    quote:`'Sooner or later even the fastest runners have to stand and fight'`,
+    person:`Stephen King`
+},{
+    quote:`'We rise by lifting others'`,
+    person:`Robert Ingersoll`
+},{
+    quote:`'I can be changed by what happens to me. But I refuse to be reduced by it'`,
+    person:`Maya Angelou`
+},{
+    quote:`'Things usually work out in the end." "What if they don't?" "That just means you haven't come to the end yet'`,
+    person:`Jeanette Walls`
+},{
+    quote:`'Life is a journey, not a destination'`,
+    person:`Ralph Waldo Emerson`
+},{
+    quote:`'I have come to believe that caring for myself is not self-indulgent. Caring for myself is an act of survival.'`,
+    person:`Audre Lorde`
+},{
+    quote:`'As you start to walk on the way, the way appears'`,
+    person:`Rumi`
+},{
+    quote:`'Never think of pain or danger or enemies a moment longer than is necessary to fight them'`,
+    person:`Ayn Rand`
+},{
+    quote:`'Straight roads do not make skillful drivers'`,
+    person:`Paula Coelho`
+},{
+    quote:`'And in the end, we were all just humans... drunk on the idea that love, only love, could heal our brokenness &#129318'`,
+    person:`F. Scott Fitzgerald`
+},{
+    quote:`'To avoid criticism: say nothing, do nothing, be nothing'`,
+    person:`Aristotle`
+},{
+    quote:`'No matter what the day brings and no matter how hard life hits you, if you can breathe, smile and keep moving on! Once you have life, know that God is alive!'`,
+    person:`Ernest Agyemang Yeboah`
+},{
+    quote:`'Keep calm when things don't go according to your expectations! Beautiful things always meet friction'`,
+    person:`Ernest Agyemang Yeboah`
+},{
+    quote:`'So you had a bad day. Kick it aside and be grateful for one less bad day to pass through'`,
+    person:`Richelle E. Goodrich`
+}, {
+    quote:`'Don't get distract in your race for a bright future, nothing good comes without obstacle '`,
+    person:`Richelle E. Goodrich`
+}, ]
+function check(){
+
+    let random = Math.floor(Math.random() * quotes.length)
+    
+    head.innerHTML = quotes[random].quote;
+    paragraph.innerText = quotes[random].person 
+}
+
+setInterval("check()", 15000)
+
+</script>
+
