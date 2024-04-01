@@ -1,7 +1,4 @@
 <style>
-    th,td{
-        border: 1px solid black;
-    }
 
 body{
     font-family: Arial, Helvetica, sans-serif;
@@ -15,12 +12,12 @@ h1{
 table{
     margin: 0 auto;
 }
+
 th,td{
     border: 1px solid white;
     align-items: center;
     padding: 30px;
-    
-
+    color: white;
 }
 .first{
     width: 50%;
@@ -28,7 +25,6 @@ th,td{
     justify-content: center;
     text-align: center;
     word-wrap: break-word;
-    border-color: head;
     display: flexbox;
     margin: 0 auto;
 }
@@ -37,37 +33,68 @@ input{
     margin-bottom: 5px;
     padding: 10px;
 }
+
+.divtab{
+    background-color: white;
+    th,td{
+        border: 1px solid black;
+        color: black;
+    }
+}
+.blac{
+    display: none;
+    padding: 10px;
+    border: none;
+    border-radius: 24px;
+    background: white;
+    color: black;
+    box-shadow: 2px 4px 6px 8px gray;
+}
+.wite{
+    padding: 10px;
+    border: none;
+    border-radius: 24px;
+    background: black;
+    color: white;
+    box-shadow: 2px 4px 6px 8px gray;
+}
 </style>
-
-<div class="first">
-    <h2>Pathway of success can never be easy</h2>
-    <p id="name"> Ikenna Iroegbu </p>
-</div>
-<br>
+<body>
+    
+    <button onclick="white()" class="wite">White theme</button>
+    <button onclick="black()" class="blac">Black theme</button>
 
 
+    <div class="first">
+        <h2>Pathway of success can never be easy</h2>
+        <p id="name"> Ikenna Iroegbu </p>
+    </div>
+    <br>
 
-<div>
-    <table cellspacing="0" class="cell-serial">
-        <tr>
-            <th>Date</th>
-            <th>Topic</th>
-            <th class="truncate">Note</th>
-            <th class="truncate">IMPP</th>
-        </tr>
-    </table> 
-</div>
 
-<form onsubmit="photocopyData(); return false">
-    <h2>Assessment</h2>
-    <input type="date" id="DOB-el" required> <br>
-    <input type="text" placeholder="Topics" id="B4-el" required> <br>
-    <textarea name="" placeholder="Note" id="NW-el"  cols="30" rows="10" required></textarea>
-    <textarea name="" id="DM-el" cols="30" rows="10" placeholder="Important Points" required></textarea> <br>
 
-    <input type="submit" value="Save">
-</form>
+    <div class="hey">
+        <table cellspacing="0" class="cell-serial">
+            <tr>
+                <th class="black">Date</th>
+                <th class="black">Topic</th>
+                <th class="black">Note</th>
+                <th class="black">IMPP</th>
+            </tr>
+        </table> 
+    </div>
 
+    <form onsubmit="photocopyData(); return false">
+        <h2>Assessment</h2>
+        <input type="date" id="DOB-el" required> <br>
+        <input type="text" placeholder="Topics" id="B4-el" required> <br>
+        <textarea name="" placeholder="Note" id="NW-el"  cols="30" rows="10" required></textarea>
+        <textarea name="" id="DM-el" cols="30" rows="10" placeholder="Important Points" required></textarea> <br>
+
+        <input type="submit" value="Save">
+    </form>
+
+</body>
 
 
 <script>
@@ -75,7 +102,17 @@ input{
     const Name = document.getElementById("name")
     const head = document.querySelector("h2")
     const paragraph = document.querySelector("p")
+    const body = document.querySelector("body")
+    const divtab = document.querySelector(".divtab")
+    const hey = document.querySelector(".hey")
+    const wite = document.querySelector(".wite")
+    const blac = document.querySelector(".blac")
+    const first = document.querySelector(".first")
 
+
+
+
+    
     photoarr = new Array ();
     function photocopyData(){
         getphotoData()
@@ -126,6 +163,29 @@ input{
 
 showphotoData()
 
+function white(){
+    if (body.style.backgroundColor = "black"){
+        body.style.backgroundColor = "white";
+        body.style.color = "black";
+        hey.classList.add("divtab")
+        wite.style.display = "none"
+        blac.style.display = "block"
+        first.classList.add("white")
+        first.classList.remove("gray")
+
+    }
+}
+function black(){
+    if (body.style.backgroundColor = "white"){
+        body.style.backgroundColor = "black";
+        body.style.color = "white";
+        hey.classList.remove("divtab")
+        wite.style.display = "block"
+        blac.style.display = "none"
+        first.classList.add("gray")
+        first.classList.remove("white")
+    }
+}
 
 function randomColor(){
     let numbers = '0123456789ABCDEF'
@@ -139,7 +199,16 @@ function show(){
     colorInput = randomColor()
     Name.style.color = colorInput
 }
-setInterval("show()", 500)
+setInterval("show()", 15000)
+
+
+first.style.boxShadow = "2px 4px 6px 8px blue"
+
+function bodcolor(){
+    colorInput = randomColor()
+    first.style.boxShadow = "2px 4px 6px 8px"+colorInput
+}
+setInterval("bodcolor()", 15000)
 
 quotes =[{
     quote: `'Get it down. Take chances. It may be bad, but it's the only way you can do anything really good'`,
@@ -197,7 +266,7 @@ quotes =[{
     person:`Johann Wolfgang von Goethe`
 },{
     quote:`'Anyone who has never made a mistake has never tried anything new.'`,
-    person:``
+    person:`James Armstrong`
 },{
     quote:`'These worst mornings with cold floors and hot windows and merciless light — the soul's certainty that the day will have to be not traversed but sort of climbed, vertically, and then that going to sleep again at the end of it will be like falling, again, off something tall and sheer.'`,
     person:`David Foster Wallace`
